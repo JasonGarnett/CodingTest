@@ -1,19 +1,32 @@
 package com.garnett.poker.model;
-
-public class Card {
-
-	public static final int MAX_VALUE = 13;
-	protected Suit suit;
-	protected Rank rank;
+/**
+ * Card interface class
+ * 
+ * @author jason.garnett
+ *
+ */
+public interface Card {
 	
-	@Override
-	public String toString() {
-		return rank.toString() + " OF " + suit.toString(); 
-	}
+	/**
+	 * 
+	 * @return {@link Rank} of the card
+	 */
+	public Rank getRank();
 	
-	public int compareTo(Card otherCard) {
-		return 0;
-	}
+	/**
+	 * 
+	 * @return {@link Suit} of the card
+	 */
+	public Suit getSuit();
+	
+	/**
+	 * Compares 2 {@link Card}s
+	 * 
+	 * @param otherCard The other card to compare to
+	 * @return 0 if the Ranks are equal, negative if the passed in card is higher, positive if the passed in card is lower
+	 */
+	public int compareTo(Card otherCard);
+	
 }
 
 enum Suit {
@@ -21,9 +34,6 @@ enum Suit {
 }
 
 enum Rank {
-	TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9), TEN(10), JACK(11), QUEEN(12), KING(13), ACE(14);
-	
-	Rank (int value) {
-		
-	}
+	TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE;
+
 }

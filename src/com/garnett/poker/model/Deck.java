@@ -1,55 +1,39 @@
 package com.garnett.poker.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+/**
+ * Interface class for the Deck
+ * 
+ * @author jason.garnett
+ *
+ */
+public interface Deck {
+	
 
-public class Deck {
 	
-	private List<Card> cards;
-	private Random rand;
+	/**
+	 * Refills the deck with new cards.
+	 */
+	public void replenish();
 	
-	public Deck() {
-		
-		replenish();
-		
-		rand = new Random();
-	}
+	/**
+	 * Pick a random {@link Card} in the deck, remove it and insert it to the end of a new
+	 * list of cards, swap the "old" list for the "new" list of cards.
+	 * 
+	 */
+	public void shuffle();
 	
-	public void replenish() {
-		cards = new ArrayList<>();
-		
-		for (Suit suit: Suit.values()) {
-			for (Rank rank: Rank.values()) {
-				cards.add(new NumberCard(suit, rank));
-			}
-		}
-	}
+	/**
+	 * Returns a {@link Card} object, removing it from the deck.
+	 * 
+	 * @return returns The {@link Card} being dealt 
+	 */
+	public Card dealOneCard();
 	
-	public void shuffle() {
-		cards.forEach(card -> {
-			int newPos = rand.nextInt(cards.size()-1);
-			
-		});
-	}
+	/**
+	 * Returns the number of cards remaining in the deck.
+	 * 
+	 * @return number of cards remaining in the deck
+	 */
+	public int getNumberOfRemainingCards();
 	
-	public Card dealOneCard() {
-		if (cards.size() > 0)
-			return cards.remove(0);
-		else
-			return null;
-	}
-	
-	public int getNumberOfRemainingCards() {
-		return cards.size();
-	}
-	
-	@Override
-	public String toString() {
-		StringBuilder retVal = new StringBuilder();
-		cards.forEach(card -> retVal.append(card.toString()).append("\n"));
-		
-		return retVal.toString();
-	}
-
 }
